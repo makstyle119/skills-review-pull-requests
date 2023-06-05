@@ -51,8 +51,8 @@
 
 <script>
   // Initialization
-  const boxes = Array.from(document.querySelectorAll("td"));
-  const inputs = Array.from(document.querySelectorAll("[type=checkbox]"));
+  const boxes = Array.from(document.querySelectorAll('td'));
+  const inputs = Array.from(document.querySelectorAll('[type=checkbox]'));
   const rows = [1, 2, 3].map((n) =>
     Array.from(document.querySelectorAll(`tr:nth-child(${n}) td`))
   );
@@ -75,9 +75,9 @@
       document.querySelector(`tr:nth-child(${x}) td:nth-child(${y})`)
     )
   );
-  const gameOver = document.querySelector("h2");
-  const HUMAN = "🧑‍💻";
-  const ROBOT = "🤖";
+  const gameOver = document.querySelector('h2');
+  const HUMAN = '🧑';
+  const ROBOT = '🤖';
 
   // Decide who goes first
   if (Math.random() > 0.5) {
@@ -86,12 +86,12 @@
 
   // Handle when a user clicks an input
   for (const input of inputs) {
-    input.addEventListener("click", handleClickInput);
+    input.addEventListener('click', handleClickInput);
   }
 
   // The user chose a box, check for win, robot turn, check for win
   function handleClickInput(evt) {
-    evt.target.closest("td").innerHTML = HUMAN;
+    evt.target.closest('td').innerHTML = HUMAN;
     if (hasWin()) {
       return endGame();
     }
@@ -106,7 +106,7 @@
     const robotBoxes = shuffle(boxes);
     while (robotBoxes.length) {
       const box = robotBoxes.shift();
-      if (box.querySelector("input")) {
+      if (box.querySelector('input')) {
         box.innerHTML = ROBOT;
         break;
       }
@@ -125,7 +125,7 @@
   // Determine if every cell matches
   function hasAllSame(arr) {
     return arr.every(
-      (td) => !td.querySelector("input") && td.innerHTML === arr[0].innerHTML
+      (td) => !td.querySelector('input') && td.innerHTML === arr[0].innerHTML
     );
   }
 
@@ -133,7 +133,7 @@
   function endGame() {
     gameOver.hidden = false;
     for (const input of inputs) {
-      input.removeEventListener("click", handleClickInput);
+      input.removeEventListener('click', handleClickInput);
       input.remove();
     }
   }
